@@ -1,0 +1,6 @@
+FROM nexus.solarsecurity.ru/node:18
+WORKDIR /app
+COPY .npmrc .npmrc
+RUN npm install express fs
+EXPOSE 5000
+CMD [ "node", "index.js" ]

@@ -1,0 +1,16 @@
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master"
+      variables:
+        BRANCH: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
+    - if: $CI_COMMIT_BRANCH =~ /^feature1$/
+      variables:
+        BRANCH: $CI_COMMIT_BRANCH
+
+form:
+  stage: test
+  script:
+    - docker-compose down
+    - docker-compose up -d 
+  tags:
+    - asa 
